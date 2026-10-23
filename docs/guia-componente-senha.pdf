@@ -1,0 +1,291 @@
+%PDF-1.4
+%âãÏÓ
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [7 0 R 9 0 R 11 0 R 13 0 R 15 0 R] /Count 5 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Courier /Encoding /WinAnsiEncoding >>
+endobj
+6 0 obj
+<< /Length 3607 >>
+stream
+0.07 0.21 0.36 rg 0 790 595 52 re f
+BT /F2 10 Tf 1 1 1 rg 1 0 0 1 44 812 Tm (VERBA  |  GUIA DE IMPLEMENTAÇÃO) Tj ET
+BT /F2 10 Tf 0.05 0.48 0.44 rg 1 0 0 1 44 770 Tm (1 / 5  •  Objetivo e organização) Tj ET
+BT /F2 22 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 740 Tm (O campo de senha por dentro) Tj ET
+BT /F2 12 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 703 Tm (O que foi feito) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 683 Tm (O campo de senha recebeu um botão com ícone de olho no lado direito. A senha começa oculta. Ao) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 669 Tm (clicar no botão, o texto aparece; ao clicar novamente, ele volta a ficar oculto. O cadeado que) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 655 Tm (já existia continua no lado esquerdo.) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 632 Tm (A implementação está em src/components/MainForms/index.tsx, dentro do componente MainForms.) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 618 Tm (Não foi criado um componente separado chamado PasswordField: o comportamento foi acrescentado) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 604 Tm (ao TextField de senha que já fazia parte do formulário.) Tj ET
+BT /F2 12 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 574 Tm (As três peças principais) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 554 Tm (1. Memória: o useState do React guarda se a senha está visível. O valor é um booleano: true ou) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 540 Tm (false. Ele representa a visibilidade, e não a senha digitada.) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 517 Tm (2. Exibição: a propriedade type do TextField recebe "text" quando a senha deve aparecer e) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 503 Tm ("password" quando deve ficar oculta.) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 480 Tm (3. Interação: um IconButton recebe o clique e inverte o estado. O ícone e o texto de) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 466 Tm (acessibilidade acompanham o mesmo estado.) Tj ET
+BT /F2 12 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 436 Tm (O caminho de um clique) Tj ET
+0.94 0.96 0.98 rg 40 368 515 58 re f
+BT /F3 8.3 Tf 0.12 0.18 0.24 rg 1 0 0 1 50 413 Tm (Clique no olho) Tj ET
+BT /F3 8.3 Tf 0.12 0.18 0.24 rg 1 0 0 1 50 402 Tm (    -> inverte showPassword) Tj ET
+BT /F3 8.3 Tf 0.12 0.18 0.24 rg 1 0 0 1 50 391 Tm (    -> React renderiza novamente) Tj ET
+BT /F3 8.3 Tf 0.12 0.18 0.24 rg 1 0 0 1 50 380 Tm (    -> type, ícone e descrição são atualizados) Tj ET
+BT /F2 12 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 349 Tm (O que cada biblioteca faz) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 329 Tm (React fornece o estado e atualiza a interface. Material UI fornece TextField, InputAdornment e) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 315 Tm (IconButton. O pacote @mui/icons-material fornece Visibility e VisibilityOff. São peças) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 301 Tm (combinadas no mesmo campo, sem precisar procurar ou modificar o input manualmente no DOM.) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 278 Tm (Este guia acompanha o código atual, incluindo useState<boolean>\(false\). Os trechos menores) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 264 Tm (explicam partes da implementação; na última página há um exemplo completo e isolado para) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 250 Tm (estudar.) Tj ET
+0.8 0.85 0.88 RG 44 39 m 551 39 l S
+BT /F1 8 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 25 Tm (MainForms • React + Material UI • Guia didático) Tj ET
+BT /F2 9 Tf 0.12 0.18 0.24 rg 1 0 0 1 523 25 Tm (1 / 5) Tj ET
+endstream
+endobj
+7 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 6 0 R >>
+endobj
+8 0 obj
+<< /Length 4308 >>
+stream
+0.07 0.21 0.36 rg 0 790 595 52 re f
+BT /F2 10 Tf 1 1 1 rg 1 0 0 1 44 812 Tm (VERBA  |  GUIA DE IMPLEMENTAÇÃO) Tj ET
+BT /F2 10 Tf 0.05 0.48 0.44 rg 1 0 0 1 44 770 Tm (2 / 5  •  Estado do React) Tj ET
+BT /F2 22 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 740 Tm (A lógica: guardar e inverter) Tj ET
+BT /F2 12 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 703 Tm (Criando a memória do componente) Tj ET
+0.94 0.96 0.98 rg 40 635 515 58 re f
+BT /F3 8.3 Tf 0.12 0.18 0.24 rg 1 0 0 1 50 680 Tm (import { useState } from "react";) Tj ET
+BT /F3 8.3 Tf 0.12 0.18 0.24 rg 1 0 0 1 50 669 Tm () Tj ET
+BT /F3 8.3 Tf 0.12 0.18 0.24 rg 1 0 0 1 50 658 Tm (const [showPassword, setShowPassword] =) Tj ET
+BT /F3 8.3 Tf 0.12 0.18 0.24 rg 1 0 0 1 50 647 Tm (  useState<boolean>\(false\);) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 623 Tm (useState cria um estado que o React mantém entre renderizações. O argumento false define o) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 609 Tm (início: a senha fica oculta quando o formulário é montado. O tipo <boolean> informa ao) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 595 Tm (TypeScript que o estado aceita true ou false. Neste caso, o TypeScript também conseguiria) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 581 Tm (inferir esse tipo pelo valor inicial.) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 558 Tm (O par entre colchetes usa desestruturação de array. showPassword é o valor disponível na) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 544 Tm (renderização atual. setShowPassword é a função usada para pedir sua atualização. Os nomes) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 530 Tm (poderiam ser outros, mas estes indicam claramente sua finalidade.) Tj ET
+BT /F2 12 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 500 Tm (O que acontece no clique) Tj ET
+0.94 0.96 0.98 rg 40 465 515 25 re f
+BT /F3 8.3 Tf 0.12 0.18 0.24 rg 1 0 0 1 50 477 Tm (onClick={\(\) => setShowPassword\(\(show\) => !show\)}) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 453 Tm (A função de onClick é executada quando o botão é acionado. Ela chama setShowPassword e passa) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 439 Tm (outra função: \(show\) => !show. O React fornece a essa função o estado pendente mais recente. O) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 425 Tm (operador ! faz a negação: !false resulta em true e !true resulta em false.) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 402 Tm (show é apenas o nome do parâmetro dessa função; não é uma segunda variável de estado. Usar a) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 388 Tm (forma funcional é adequado porque o próximo valor depende do valor anterior. Também evita) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 374 Tm (depender de um valor capturado por uma renderização anterior quando há atualizações) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 360 Tm (enfileiradas.) Tj ET
+BT /F2 12 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 330 Tm (Simulando duas interações) Tj ET
+0.94 0.96 0.98 rg 40 273 515 47 re f
+BT /F3 8.3 Tf 0.12 0.18 0.24 rg 1 0 0 1 50 307 Tm (Início:       showPassword = false) Tj ET
+BT /F3 8.3 Tf 0.12 0.18 0.24 rg 1 0 0 1 50 296 Tm (1º clique:    !false = true   -> aparece) Tj ET
+BT /F3 8.3 Tf 0.12 0.18 0.24 rg 1 0 0 1 50 285 Tm (2º clique:    !true  = false  -> oculta) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 261 Tm (Uma variável comum, como let showPassword = false, não substitui esse estado: alterar uma) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 247 Tm (variável local não pede uma nova renderização e ela seria recriada quando a função do) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 233 Tm (componente rodasse novamente. O setter é a ligação entre a mudança e a atualização da) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 219 Tm (interface.) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 196 Tm (Essa memória existe enquanto o componente permanece montado. Ela não usa localStorage nem) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 182 Tm (salva a escolha em um servidor. Uma nova montagem começa novamente com false.) Tj ET
+0.8 0.85 0.88 RG 44 39 m 551 39 l S
+BT /F1 8 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 25 Tm (MainForms • React + Material UI • Guia didático) Tj ET
+BT /F2 9 Tf 0.12 0.18 0.24 rg 1 0 0 1 523 25 Tm (2 / 5) Tj ET
+endstream
+endobj
+9 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 8 0 R >>
+endobj
+10 0 obj
+<< /Length 4403 >>
+stream
+0.07 0.21 0.36 rg 0 790 595 52 re f
+BT /F2 10 Tf 1 1 1 rg 1 0 0 1 44 812 Tm (VERBA  |  GUIA DE IMPLEMENTAÇÃO) Tj ET
+BT /F2 10 Tf 0.05 0.48 0.44 rg 1 0 0 1 44 770 Tm (3 / 5  •  TextField e Material UI) Tj ET
+BT /F2 22 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 740 Tm (Montando o campo e o botão) Tj ET
+BT /F2 12 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 703 Tm (Alternando o tipo do input) Tj ET
+0.94 0.96 0.98 rg 40 668 515 25 re f
+BT /F3 8.3 Tf 0.12 0.18 0.24 rg 1 0 0 1 50 680 Tm (type={showPassword ? "text" : "password"}) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 656 Tm (Essa expressão usa o operador ternário: condição ? valorSeVerdadeiro : valorSeFalso. Quando) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 642 Tm (showPassword vale true, o input recebe type="text" e mostra os caracteres. Quando vale false,) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 628 Tm (recebe type="password" e o navegador mascara os caracteres.) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 605 Tm (O campo continua sendo o mesmo elemento na estrutura do React; muda a propriedade que controla) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 591 Tm (sua apresentação. A implementação não apaga nem substitui o texto digitado ao alternar o) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 577 Tm (estado.) Tj ET
+BT /F2 12 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 547 Tm (Encaixando elementos nas extremidades) Tj ET
+0.94 0.96 0.98 rg 40 457 515 80 re f
+BT /F3 8.3 Tf 0.12 0.18 0.24 rg 1 0 0 1 50 524 Tm (slotProps={{) Tj ET
+BT /F3 8.3 Tf 0.12 0.18 0.24 rg 1 0 0 1 50 513 Tm (  input: {) Tj ET
+BT /F3 8.3 Tf 0.12 0.18 0.24 rg 1 0 0 1 50 502 Tm (    startAdornment: \(/* cadeado à esquerda */\),) Tj ET
+BT /F3 8.3 Tf 0.12 0.18 0.24 rg 1 0 0 1 50 491 Tm (    endAdornment: \(/* botão à direita */\),) Tj ET
+BT /F3 8.3 Tf 0.12 0.18 0.24 rg 1 0 0 1 50 480 Tm (  },) Tj ET
+BT /F3 8.3 Tf 0.12 0.18 0.24 rg 1 0 0 1 50 469 Tm (}}) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 445 Tm (slotProps permite configurar partes internas do TextField. A opção input configura o) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 431 Tm (componente de entrada do Material UI. startAdornment acrescenta o cadeado no início;) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 417 Tm (endAdornment acrescenta o botão no final. O InputAdornment organiza esses elementos junto ao) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 403 Tm (campo.) Tj ET
+0.94 0.96 0.98 rg 40 321 515 69 re f
+BT /F3 8.3 Tf 0.12 0.18 0.24 rg 1 0 0 1 50 377 Tm (<InputAdornment position="end">) Tj ET
+BT /F3 8.3 Tf 0.12 0.18 0.24 rg 1 0 0 1 50 366 Tm (  <IconButton edge="end" ...>) Tj ET
+BT /F3 8.3 Tf 0.12 0.18 0.24 rg 1 0 0 1 50 355 Tm (    {showPassword ? <VisibilityOff /> : <Visibility />}) Tj ET
+BT /F3 8.3 Tf 0.12 0.18 0.24 rg 1 0 0 1 50 344 Tm (  </IconButton>) Tj ET
+BT /F3 8.3 Tf 0.12 0.18 0.24 rg 1 0 0 1 50 333 Tm (</InputAdornment>) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 309 Tm (position="end" informa que o adorno fica no final da entrada. IconButton cria um botão próprio) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 295 Tm (para um ícone, com suporte à interação de um botão. edge="end" ajusta sua margem para) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 281 Tm (alinhá-lo à extremidade do campo. O texto "..." no trecho acima apenas abrevia propriedades) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 267 Tm (explicadas na próxima página.) Tj ET
+BT /F2 12 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 237 Tm (Por que o ícone também muda?) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 217 Tm (Com a senha oculta, aparece Visibility, o olho aberto, indicando a ação de mostrar. Com a) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 203 Tm (senha visível, aparece VisibilityOff, o olho cortado, indicando a ação de ocultar. Assim, o) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 189 Tm (desenho representa o que o próximo clique fará.) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 166 Tm (O estilo existente em sx foi mantido, incluindo borderRadius: "12px". O arredondamento cuida) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 152 Tm (da aparência; useState, type e onClick cuidam do comportamento.) Tj ET
+0.8 0.85 0.88 RG 44 39 m 551 39 l S
+BT /F1 8 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 25 Tm (MainForms • React + Material UI • Guia didático) Tj ET
+BT /F2 9 Tf 0.12 0.18 0.24 rg 1 0 0 1 523 25 Tm (3 / 5) Tj ET
+endstream
+endobj
+11 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 10 0 R >>
+endobj
+12 0 obj
+<< /Length 4344 >>
+stream
+0.07 0.21 0.36 rg 0 790 595 52 re f
+BT /F2 10 Tf 1 1 1 rg 1 0 0 1 44 812 Tm (VERBA  |  GUIA DE IMPLEMENTAÇÃO) Tj ET
+BT /F2 10 Tf 0.05 0.48 0.44 rg 1 0 0 1 44 770 Tm (4 / 5  •  Entendendo as propriedades do botão) Tj ET
+BT /F2 22 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 740 Tm (Clique, foco e acessibilidade) Tj ET
+BT /F2 12 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 703 Tm (Dando um nome ao ícone) Tj ET
+0.94 0.96 0.98 rg 40 635 515 58 re f
+BT /F3 8.3 Tf 0.12 0.18 0.24 rg 1 0 0 1 50 680 Tm (aria-label={) Tj ET
+BT /F3 8.3 Tf 0.12 0.18 0.24 rg 1 0 0 1 50 669 Tm (  showPassword ? "Ocultar senha" : "Mostrar senha") Tj ET
+BT /F3 8.3 Tf 0.12 0.18 0.24 rg 1 0 0 1 50 658 Tm (}) Tj ET
+BT /F3 8.3 Tf 0.12 0.18 0.24 rg 1 0 0 1 50 647 Tm (aria-pressed={showPassword}) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 623 Tm (Um desenho de olho, sozinho, não oferece um nome útil para quem usa leitor de tela. aria-label) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 609 Tm (fornece esse nome. O texto acompanha a ação disponível: "Mostrar senha" enquanto ela está) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 595 Tm (oculta e "Ocultar senha" enquanto está visível.) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 572 Tm (aria-pressed expõe o estado pressionado de um botão de alternância. Aqui, true corresponde à) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 558 Tm (visualização ativada. Essa propriedade comunica o estado; ela não executa a mudança. O) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 544 Tm (comportamento continua sendo responsabilidade do onClick.) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 521 Tm (Uma alternativa de acessibilidade para um toggle é manter um nome fixo, como "Exibir senha", e) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 507 Tm (deixar aria-pressed comunicar a alternância. O código atual usa um nome dinâmico junto desse) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 493 Tm (estado; vale avaliar a clareza dessa combinação com leitores de tela ao evoluir o formulário.) Tj ET
+BT /F2 12 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 463 Tm (Mantendo a atenção no campo) Tj ET
+0.94 0.96 0.98 rg 40 428 515 25 re f
+BT /F3 8.3 Tf 0.12 0.18 0.24 rg 1 0 0 1 50 440 Tm (onMouseDown={\(event\) => event.preventDefault\(\)}) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 416 Tm (Ao pressionar o mouse em um botão, o navegador normalmente pode transferir o foco para ele.) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 402 Tm (preventDefault cancela essa ação padrão do mousedown, ajudando a manter o foco no campo) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 388 Tm (durante o uso com mouse. Isso permite continuar digitando sem precisar selecionar a entrada) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 374 Tm (novamente.) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 351 Tm (Esse evento não alterna a senha e não é o mesmo evento do clique. O onClick continua) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 337 Tm (responsável pela alternância. Também não é necessário adicionar onMouseUp para reproduzir a) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 323 Tm (lógica atual. O comportamento com toque pode variar e deve ser conferido no navegador usado.) Tj ET
+BT /F2 12 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 293 Tm (Como conferir na interface) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 273 Tm (Digite uma senha de exemplo: ela deve começar mascarada. Clique no olho: o mesmo texto deve) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 259 Tm (aparecer. Clique novamente: ele deve voltar a ficar oculto. Repita enquanto digita para) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 245 Tm (conferir que o conteúdo permanece.) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 222 Tm (Use Tab para chegar ao botão e tente acioná-lo com Espaço ou Enter. Confira a mudança do ícone) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 208 Tm (e, com leitor de tela, a descrição anunciada. Estas são orientações de verificação manual;) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 194 Tm (este documento não afirma que esses testes de navegador foram executados.) Tj ET
+0.8 0.85 0.88 RG 44 39 m 551 39 l S
+BT /F1 8 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 25 Tm (MainForms • React + Material UI • Guia didático) Tj ET
+BT /F2 9 Tf 0.12 0.18 0.24 rg 1 0 0 1 523 25 Tm (4 / 5) Tj ET
+endstream
+endobj
+13 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 12 0 R >>
+endobj
+14 0 obj
+<< /Length 4891 >>
+stream
+0.07 0.21 0.36 rg 0 790 595 52 re f
+BT /F2 10 Tf 1 1 1 rg 1 0 0 1 44 812 Tm (VERBA  |  GUIA DE IMPLEMENTAÇÃO) Tj ET
+BT /F2 10 Tf 0.05 0.48 0.44 rg 1 0 0 1 44 770 Tm (5 / 5  •  Código reunido e limites da implementação) Tj ET
+BT /F2 22 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 740 Tm (Exemplo completo para estudar) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 710 Tm (Este exemplo isola o comportamento em um componente pequeno. No projeto, a mesma lógica está) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 696 Tm (dentro de MainForms. O cadeado e os estilos foram omitidos aqui para facilitar a leitura.) Tj ET
+0.94 0.96 0.98 rg 40 262 515 421 re f
+BT /F3 8.3 Tf 0.12 0.18 0.24 rg 1 0 0 1 50 670 Tm (import { useState } from "react";) Tj ET
+BT /F3 8.3 Tf 0.12 0.18 0.24 rg 1 0 0 1 50 659 Tm (import { TextField, InputAdornment, IconButton }) Tj ET
+BT /F3 8.3 Tf 0.12 0.18 0.24 rg 1 0 0 1 50 648 Tm (  from "@mui/material";) Tj ET
+BT /F3 8.3 Tf 0.12 0.18 0.24 rg 1 0 0 1 50 637 Tm (import Visibility from "@mui/icons-material/Visibility";) Tj ET
+BT /F3 8.3 Tf 0.12 0.18 0.24 rg 1 0 0 1 50 626 Tm (import VisibilityOff from "@mui/icons-material/VisibilityOff";) Tj ET
+BT /F3 8.3 Tf 0.12 0.18 0.24 rg 1 0 0 1 50 615 Tm () Tj ET
+BT /F3 8.3 Tf 0.12 0.18 0.24 rg 1 0 0 1 50 604 Tm (export default function CampoSenha\(\) {) Tj ET
+BT /F3 8.3 Tf 0.12 0.18 0.24 rg 1 0 0 1 50 593 Tm (  const [showPassword, setShowPassword] =) Tj ET
+BT /F3 8.3 Tf 0.12 0.18 0.24 rg 1 0 0 1 50 582 Tm (    useState<boolean>\(false\);) Tj ET
+BT /F3 8.3 Tf 0.12 0.18 0.24 rg 1 0 0 1 50 571 Tm () Tj ET
+BT /F3 8.3 Tf 0.12 0.18 0.24 rg 1 0 0 1 50 560 Tm (  return \() Tj ET
+BT /F3 8.3 Tf 0.12 0.18 0.24 rg 1 0 0 1 50 549 Tm (    <TextField) Tj ET
+BT /F3 8.3 Tf 0.12 0.18 0.24 rg 1 0 0 1 50 538 Tm (      label="Sua senha") Tj ET
+BT /F3 8.3 Tf 0.12 0.18 0.24 rg 1 0 0 1 50 527 Tm (      type={showPassword ? "text" : "password"}) Tj ET
+BT /F3 8.3 Tf 0.12 0.18 0.24 rg 1 0 0 1 50 516 Tm (      slotProps={{) Tj ET
+BT /F3 8.3 Tf 0.12 0.18 0.24 rg 1 0 0 1 50 505 Tm (        input: {) Tj ET
+BT /F3 8.3 Tf 0.12 0.18 0.24 rg 1 0 0 1 50 494 Tm (          endAdornment: \() Tj ET
+BT /F3 8.3 Tf 0.12 0.18 0.24 rg 1 0 0 1 50 483 Tm (            <InputAdornment position="end">) Tj ET
+BT /F3 8.3 Tf 0.12 0.18 0.24 rg 1 0 0 1 50 472 Tm (              <IconButton) Tj ET
+BT /F3 8.3 Tf 0.12 0.18 0.24 rg 1 0 0 1 50 461 Tm (                aria-label={showPassword) Tj ET
+BT /F3 8.3 Tf 0.12 0.18 0.24 rg 1 0 0 1 50 450 Tm (                  ? "Ocultar senha" : "Mostrar senha"}) Tj ET
+BT /F3 8.3 Tf 0.12 0.18 0.24 rg 1 0 0 1 50 439 Tm (                aria-pressed={showPassword}) Tj ET
+BT /F3 8.3 Tf 0.12 0.18 0.24 rg 1 0 0 1 50 428 Tm (                onClick={\(\) =>) Tj ET
+BT /F3 8.3 Tf 0.12 0.18 0.24 rg 1 0 0 1 50 417 Tm (                  setShowPassword\(\(show\) => !show\)}) Tj ET
+BT /F3 8.3 Tf 0.12 0.18 0.24 rg 1 0 0 1 50 406 Tm (                onMouseDown={\(e\) => e.preventDefault\(\)}) Tj ET
+BT /F3 8.3 Tf 0.12 0.18 0.24 rg 1 0 0 1 50 395 Tm (                edge="end") Tj ET
+BT /F3 8.3 Tf 0.12 0.18 0.24 rg 1 0 0 1 50 384 Tm (              >) Tj ET
+BT /F3 8.3 Tf 0.12 0.18 0.24 rg 1 0 0 1 50 373 Tm (                {showPassword) Tj ET
+BT /F3 8.3 Tf 0.12 0.18 0.24 rg 1 0 0 1 50 362 Tm (                  ? <VisibilityOff /> : <Visibility />}) Tj ET
+BT /F3 8.3 Tf 0.12 0.18 0.24 rg 1 0 0 1 50 351 Tm (              </IconButton>) Tj ET
+BT /F3 8.3 Tf 0.12 0.18 0.24 rg 1 0 0 1 50 340 Tm (            </InputAdornment>) Tj ET
+BT /F3 8.3 Tf 0.12 0.18 0.24 rg 1 0 0 1 50 329 Tm (          \),) Tj ET
+BT /F3 8.3 Tf 0.12 0.18 0.24 rg 1 0 0 1 50 318 Tm (        },) Tj ET
+BT /F3 8.3 Tf 0.12 0.18 0.24 rg 1 0 0 1 50 307 Tm (      }}) Tj ET
+BT /F3 8.3 Tf 0.12 0.18 0.24 rg 1 0 0 1 50 296 Tm (    />) Tj ET
+BT /F3 8.3 Tf 0.12 0.18 0.24 rg 1 0 0 1 50 285 Tm (  \);) Tj ET
+BT /F3 8.3 Tf 0.12 0.18 0.24 rg 1 0 0 1 50 274 Tm (}) Tj ET
+BT /F2 12 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 243 Tm (O que essa implementação resolve) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 223 Tm (Ela controla a visibilidade local da senha. Não valida credenciais, não envia dados e não) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 209 Tm (implementa autenticação. O estado guarda somente a escolha de mostrar ou ocultar; o valor) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 195 Tm (digitado não é controlado por um estado React neste trecho.) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 172 Tm (Para lembrar: o clique muda o estado; o estado escolhe o type; o React atualiza o campo. O) Tj ET
+BT /F1 10.5 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 158 Tm (mesmo estado também mantém o ícone e a descrição alinhados ao comportamento.) Tj ET
+0.8 0.85 0.88 RG 44 39 m 551 39 l S
+BT /F1 8 Tf 0.12 0.18 0.24 rg 1 0 0 1 44 25 Tm (MainForms • React + Material UI • Guia didático) Tj ET
+BT /F2 9 Tf 0.12 0.18 0.24 rg 1 0 0 1 523 25 Tm (5 / 5) Tj ET
+endstream
+endobj
+15 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 14 0 R >>
+endobj
+xref
+0 16
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000148 00000 n 
+0000000245 00000 n 
+0000000347 00000 n 
+0000000442 00000 n 
+0000004101 00000 n 
+0000004247 00000 n 
+0000008607 00000 n 
+0000008753 00000 n 
+0000013209 00000 n 
+0000013357 00000 n 
+0000017754 00000 n 
+0000017902 00000 n 
+0000022846 00000 n 
+trailer
+<< /Size 16 /Root 1 0 R >>
+startxref
+22994
+%%EOF
