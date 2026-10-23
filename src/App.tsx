@@ -1,12 +1,11 @@
 
-import MainForms from '@/components/MainForms/MainForms'
-import { CssBaseline } from '@mui/material'
+
+import Login from '@/pages/Login/Login'
+
 const App = () => {
   return (
     <>
-  <CssBaseline />
-  <MainForms/>
-   
+      <Login/>
     </>
   )
 }

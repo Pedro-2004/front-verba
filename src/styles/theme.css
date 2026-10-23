@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+@theme static {
+  /* Botões principais, áreas de destaque e cabeçalhos */
+  --color-primary: #12355B; /* Azul-marinho */
+
+  /* Ações secundárias, detalhes e indicadores positivos */
+  --color-secondary: #14B8A6; /* Verde-turquesa */
+
+  /* Fundo geral da aplicação */
+  --color-background: #F7FAFC; /* Branco gelo */
+
+  /* Títulos e textos principais */
+  --color-text-primary: #0B1F33; /* Azul muito escuro */
+
+  /* Descrições, labels e textos menos importantes */
+  --color-text-secondary: #5B6B7A; /* Cinza azulado */
+}
