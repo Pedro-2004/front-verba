@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+
+
 @theme static {
   /* Botões principais, áreas de destaque e cabeçalhos */
   --color-primary: #12355B; /* Azul-marinho */
