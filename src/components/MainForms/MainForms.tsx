@@ -33,14 +33,46 @@ type MainFormsProps = {
 
 const MainForms = ({ isDark }: MainFormsProps) => {
   const [showPassword, setShowPassword] = useState<boolean>(false)
+  const textColor = isDark ? '#F7FAFC' : '#0B1F33'
+  const secondaryColor = isDark ? '#B3C2D1' : '#5B6B7A'
+  const borderColor = isDark ? '#52677D' : '#8593A1'
+  const accentColor = isDark ? '#2DD4BF' : '#0F766E'
+  const inputBackground = isDark ? '#102A43' : '#FFFFFF'
+  const fieldStyles = {
+    '& .MuiOutlinedInput-root': {
+      borderRadius: '12px',
+      color: textColor,
+      backgroundColor: inputBackground,
+      '& .MuiOutlinedInput-notchedOutline': { borderColor },
+      '&:hover .MuiOutlinedInput-notchedOutline': {
+        borderColor: secondaryColor,
+      },
+      '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+        borderColor: accentColor,
+      },
+      '&.Mui-error .MuiOutlinedInput-notchedOutline': {
+        borderColor: isDark ? '#FDA4AF' : '#B91C1C',
+      },
+      '& input': { caretColor: accentColor },
+      '& input::placeholder': { color: secondaryColor, opacity: 1 },
+      '& input:-webkit-autofill': {
+        WebkitBoxShadow: `0 0 0 100px ${inputBackground} inset`,
+        WebkitTextFillColor: textColor,
+        caretColor: accentColor,
+      },
+      '& input:autofill': {
+        boxShadow: `0 0 0 100px ${inputBackground} inset`,
+        color: textColor,
+      },
+    },
+  }
 
   return (
     <>
       <Card
         sx={{
           width: '100%',
-          maxWidth: '600px',
-          height: '800px',
+          maxWidth: '400px',
           textAlign: 'center',
           boxShadow: 'none',
           border: 'none',
@@ -50,7 +82,6 @@ const MainForms = ({ isDark }: MainFormsProps) => {
       >
         <Box
           sx={{
-            pt: 8,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -76,31 +107,31 @@ const MainForms = ({ isDark }: MainFormsProps) => {
             title="Verba"
             variant="h3"
             fontFamily="arial"
-            color={!isDark ? 'black' : 'white'}
+            color={textColor}
             fontWeight="700"
           />
         </Box>
 
-        <Box sx={{ marginTop: '25px', marginLeft: '18px' }}>
+        <Box sx={{ marginTop: '25px' }}>
           <Title
             title="Bem-vindo de volta"
             fontFamily="arial"
             fontSize="24px"
             fontWeight="600"
-            color={!isDark ? 'black' : 'white'}
+            color={textColor}
           />
           <Title
             title="Acesse sua conta e continue cuidando das susa finanças"
             fontFamily="arial"
             fontSize="14px"
-            fontWeight="200"
-            color={!isDark ? 'black' : 'white'}
+            fontWeight="400"
+            color={secondaryColor}
           />
         </Box>
 
         <Stack
           spacing={3}
-          sx={{ marginTop: '30px', width: '400px', marginLeft: '115px' }}
+          sx={{ marginTop: '30px', width: '100%' }}
         >
           <Stack spacing={1} sx={{ textAlign: 'left' }}>
             <Title
@@ -108,7 +139,7 @@ const MainForms = ({ isDark }: MainFormsProps) => {
               fontFamily="arial"
               fontWeight="700"
               fontSize="14px"
-              color={!isDark ? 'black' : 'white'}
+              color={textColor}
             />
             <TextField
               id="email"
@@ -116,15 +147,7 @@ const MainForms = ({ isDark }: MainFormsProps) => {
               placeholder="seu@email.com"
               variant="outlined"
               size="medium"
-              sx={{
-                '& .MuiOutlinedInput-root': {
-                  borderRadius: '12px',
-                  color: !isDark ? 'black' : 'white',
-                  '& fieldset': {
-                    borderColor: isDark ? 'white' : 'black',
-                  },
-                },
-              }}
+              sx={fieldStyles}
               slotProps={{
                 htmlInput: { 'aria-label': 'E-mail' },
                 input: {
@@ -132,7 +155,7 @@ const MainForms = ({ isDark }: MainFormsProps) => {
                     <InputAdornment position="start">
                       <EmailOutlinedIcon
                         sx={{
-                          color: isDark ? 'white' : 'black',
+                          color: secondaryColor,
                         }}
                       />
                     </InputAdornment>
@@ -147,7 +170,7 @@ const MainForms = ({ isDark }: MainFormsProps) => {
               fontFamily="arial"
               fontWeight="700"
               fontSize="14px"
-              color={!isDark ? 'black' : 'white'}
+              color={textColor}
             />
 
             <TextField
@@ -157,16 +180,7 @@ const MainForms = ({ isDark }: MainFormsProps) => {
               variant="outlined"
               size="medium"
 
-              sx={{
-                '& .MuiOutlinedInput-root': {
-                  borderRadius: '12px',
-                  border: '1px ',
-                  color: !isDark ? 'black' : 'white',
-                  '& fieldset': {
-                    borderColor: isDark ? 'white' : 'black',
-                  },
-                },
-              }}
+              sx={fieldStyles}
               slotProps={{
                 htmlInput: { 'aria-label': 'Senha' },
                 input: {
@@ -174,7 +188,7 @@ const MainForms = ({ isDark }: MainFormsProps) => {
                     <InputAdornment position="start">
                       <LockOutlinedIcon
                         sx={{
-                          color: isDark ? 'white' : 'black',
+                          color: secondaryColor,
                         }}
                       />
                     </InputAdornment>
@@ -183,7 +197,7 @@ const MainForms = ({ isDark }: MainFormsProps) => {
                     <InputAdornment position="end">
                       <IconButton
                         sx={{
-                          color: isDark ? 'white' : 'black',
+                          color: secondaryColor,
                         }}
                         aria-label={
                           showPassword ? 'Ocultar senha' : 'Mostrar senha'
@@ -205,7 +219,8 @@ const MainForms = ({ isDark }: MainFormsProps) => {
                 control={
                   <Checkbox
                     sx={{
-                      color: isDark ? 'white' : 'black',
+                      color: secondaryColor,
+                      '&.Mui-checked': { color: accentColor },
                     }}
                   />
                 }
@@ -215,7 +230,7 @@ const MainForms = ({ isDark }: MainFormsProps) => {
                     fontFamily: 'Inter, sans-serif',
                     fontSize: '14px',
                     fontWeight: 500,
-                    color: !isDark ? 'black' : 'white',
+                    color: secondaryColor,
                   },
                 }}
               />
@@ -228,12 +243,17 @@ const MainForms = ({ isDark }: MainFormsProps) => {
                 textTransform: 'none',
                 fontFamily: 'Inter, sans-serif',
                 justifyContent: 'center',
-                color: 'white',
-                border: '  solid 2px  ',
+                color: '#0B1F33',
+                border: 'solid 2px transparent',
                 borderRadius: '10px',
                 height: '50px',
                 width: '100%',
                 background: '#14B8A6',
+                '&:hover': { backgroundColor: '#2DD4BF' },
+                '&.Mui-focusVisible': {
+                  outline: `2px solid ${accentColor}`,
+                  outlineOffset: '3px',
+                },
               }}
             >
               Entrar
@@ -243,10 +263,10 @@ const MainForms = ({ isDark }: MainFormsProps) => {
               variant="middle"
               sx={{
                 fontFamily: 'Inter, sans-serif',
-                color: isDark ? 'white' : 'black',
+                color: secondaryColor,
 
                 '&::before, &::after': {
-                  borderColor: isDark ? 'gray' : 'black',
+                  borderColor,
                 },
               }}
             >
@@ -256,29 +276,45 @@ const MainForms = ({ isDark }: MainFormsProps) => {
             <Button
               startIcon={<GoogleIcon />}
               sx={{
-                border: 'solid 1px #dce0e3 ',
-                color: !isDark ? 'black' : 'white',
+                border: `solid 1px ${borderColor}`,
+                color: textColor,
                 fontFamily: 'Inter, sans-serif',
                 fontSize: '15px',
                 fontWeight: 200,
                 textTransform: 'none',
                 height: '50px',
                 borderRadius: '10px',
+                '&:hover': {
+                  borderColor: accentColor,
+                  backgroundColor: isDark ? '#163750' : '#F0FDFA',
+                },
+                '&.Mui-focusVisible': {
+                  outline: `2px solid ${accentColor}`,
+                  outlineOffset: '3px',
+                },
               }}
             >
               Entrar com o Google
             </Button>
           </Stack>
-          <Box sx={{ display: 'flex', flexDirection: 'row', gap: '100px' }}>
+          <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 1 }}>
             <Typography
               sx={{
-                color: isDark ? 'white' : 'black',
+                color: secondaryColor,
               }}
             >
               Ainda não tem uma conta ?
             </Typography>
             <Typography
-              sx={{ fontWeight: 700, color: 'var(--color-secondary)' }}
+              sx={{
+                fontWeight: 700,
+                color: accentColor,
+                '&:hover': { textDecoration: 'underline' },
+                '&:focus-visible': {
+                  outline: `2px solid ${accentColor}`,
+                  outlineOffset: '3px',
+                },
+              }}
               component="a"
               href="/cadastro"
             >

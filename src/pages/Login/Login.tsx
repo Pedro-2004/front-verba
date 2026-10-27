@@ -1,8 +1,6 @@
 import MainForms from '@/components/MainForms/MainForms'
 import Box from '@mui/material/Box'
 import ButtonTheme from '@/components/ButtonTheme/ButtonTheme'
-import LightModeIcon from '@mui/icons-material/LightMode'
-import DarkModeIcon from '@mui/icons-material/DarkMode'
 import { useState } from 'react'
 
 const Login = () => {
@@ -17,24 +15,35 @@ const Login = () => {
       sx={{
         minHeight: '100vh',
         display: 'flex',
+        flexDirection: { xs: 'column', md: 'row' },
         backgroundColor: isDark ? '#0B1F33' : '#FFFFFF',
       }}
     >
       <Box
         sx={{
-          width: '50%',
-          minHeight: '100vh',
-
-          backgroundImage: "url('/Login/financas.png')",
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
+          width: { xs: '100%', md: '50%' },
+          flexShrink: 0,
+          display: 'flex',
+          alignItems: 'center',
+          backgroundColor: '#03141f',
         }}
-      />
+      >
+        <Box
+          component="img"
+          src="/Login/financas.png"
+          alt="Verba: suas finanças em um só lugar"
+          sx={{ display: 'block', width: '100%', height: 'auto' }}
+        />
+      </Box>
 
       <Box
         sx={{
-          width: '50%',
+          width: { xs: '100%', md: '50%' },
+          minWidth: 0,
+          boxSizing: 'border-box',
+          px: { xs: 3, sm: 4, lg: 6 },
+          pt: 9,
+          pb: 5,
           minHeight: '100vh',
 
           position: 'relative',
@@ -44,6 +53,7 @@ const Login = () => {
           justifyContent: 'center',
 
           backgroundColor: isDark ? '#0B1F33' : '#FFFFFF',
+          colorScheme: isDark ? 'dark' : 'light',
         }}
       >
         <Box
@@ -54,7 +64,7 @@ const Login = () => {
           }}
         >
           <ButtonTheme
-            icon={isDark ? <LightModeIcon /> : <DarkModeIcon />}
+            isDark={isDark}
             onClick={changeColor}
           />
         </Box>
