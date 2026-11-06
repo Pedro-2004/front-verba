@@ -69,7 +69,7 @@ const Login = () => {
           />
         </Box>
 
-        <MainForms isDark={isDark} />
+        <MainForms isDark={isDark}  mode='login'/>
       </Box>
     </Box>
   )

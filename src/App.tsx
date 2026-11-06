@@ -1,11 +1,11 @@
 
 
-import Login from '@/pages/Login/Login'
+import AppRoutes from '@/routes/AppRoutes'
 
 const App = () => {
   return (
     <>
-      <Login/>
+      <AppRoutes/>
     </>
   )
 }

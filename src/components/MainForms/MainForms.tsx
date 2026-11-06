@@ -11,6 +11,7 @@ import {
   Button,
   Divider,
   Typography,
+  Link,
 } from '@mui/material'
 import Visibility from '@mui/icons-material/Visibility'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
@@ -21,6 +22,7 @@ import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined'
 import EastTwoToneIcon from '@mui/icons-material/EastTwoTone'
 import GoogleIcon from '@mui/icons-material/Google'
 
+
 // #12355B → botões principais, áreas de destaque, cabeçalhos
 // #14B8A6 → ações secundárias, detalhes, indicadores positivos
 // #F7FAFC → fundo geral da aplicação
@@ -29,9 +31,10 @@ import GoogleIcon from '@mui/icons-material/Google'
 
 type MainFormsProps = {
   isDark: boolean
+  mode: 'login' | 'register'
 }
 
-const MainForms = ({ isDark }: MainFormsProps) => {
+const MainForms = ({ isDark, mode}: MainFormsProps) => {
   const [showPassword, setShowPassword] = useState<boolean>(false)
   const textColor = isDark ? '#F7FAFC' : '#0B1F33'
   const secondaryColor = isDark ? '#B3C2D1' : '#5B6B7A'
@@ -114,14 +117,14 @@ const MainForms = ({ isDark }: MainFormsProps) => {
 
         <Box sx={{ marginTop: '25px' }}>
           <Title
-            title="Bem-vindo de volta"
+            title={mode === 'login'?'Bem-vindo de volta': 'Crie sua conta' }
             fontFamily="arial"
             fontSize="24px"
             fontWeight="600"
             color={textColor}
           />
           <Title
-            title="Acesse sua conta e continue cuidando das susa finanças"
+            title={mode === 'login' ?"Acesse sua conta e continue cuidando das susa finanças": 'Crie a sua conta e tenha mais controle dos seus gastos'}
             fontFamily="arial"
             fontSize="14px"
             fontWeight="400"
@@ -129,10 +132,7 @@ const MainForms = ({ isDark }: MainFormsProps) => {
           />
         </Box>
 
-        <Stack
-          spacing={3}
-          sx={{ marginTop: '30px', width: '100%' }}
-        >
+        <Stack spacing={3} sx={{ marginTop: '30px', width: '100%'}}>
           <Stack spacing={1} sx={{ textAlign: 'left' }}>
             <Title
               title="E-mail"
@@ -214,12 +214,12 @@ const MainForms = ({ isDark }: MainFormsProps) => {
                 },
               }}
             />
-            <Box>
+            <Box >
               <FormControlLabel
                 control={
                   <Checkbox
                     sx={{
-                      color: secondaryColor,
+                      color: secondaryColor, 
                       '&.Mui-checked': { color: accentColor },
                     }}
                   />
@@ -297,7 +297,14 @@ const MainForms = ({ isDark }: MainFormsProps) => {
               Entrar com o Google
             </Button>
           </Stack>
-          <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 1 }}>
+          <Box
+            sx={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              justifyContent: 'center',
+              gap: 1,
+            }}
+          >
             <Typography
               sx={{
                 color: secondaryColor,
@@ -315,8 +322,8 @@ const MainForms = ({ isDark }: MainFormsProps) => {
                   outlineOffset: '3px',
                 },
               }}
-              component="a"
-              href="/cadastro"
+              component={Link}
+              href="/register"
             >
               Criar Conta
             </Typography>
