@@ -1,6 +1,5 @@
 import { Routes, Route, Navigate } from 'react-router'
 import Register from '@/pages/Register/Register'
-
 import Login from '@/pages/Login/Login'
 
 const AppRoutes = () => {

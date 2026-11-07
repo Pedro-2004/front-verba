@@ -21,6 +21,8 @@ const Login = () => {
     >
       <Box
         sx={{
+          height: { xs: 'auto', md: '100dvh' },
+          overflow: { xs: 'visible', md: 'hidden' },
           width: { xs: '100%', md: '50%' },
           flexShrink: 0,
           display: 'flex',
@@ -30,9 +32,14 @@ const Login = () => {
       >
         <Box
           component="img"
-          src="/Login/financas.png"
+          src="/Login/capa_login.png"
           alt="Verba: suas finanças em um só lugar"
-          sx={{ display: 'block', width: '100%', height: 'auto' }}
+          sx={{
+            display: 'block',
+            width: '100%',
+            
+            height: { xs: 'auto', md: '100%' },
+          }}
         />
       </Box>
 
@@ -63,13 +70,10 @@ const Login = () => {
             right: 20,
           }}
         >
-          <ButtonTheme
-            isDark={isDark}
-            onClick={changeColor}
-          />
+          <ButtonTheme isDark={isDark} onClick={changeColor} />
         </Box>
 
-        <MainForms isDark={isDark}  mode='login'/>
+        <MainForms isDark={isDark} mode="login" />
       </Box>
     </Box>
   )

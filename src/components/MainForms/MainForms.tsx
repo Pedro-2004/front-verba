@@ -11,7 +11,6 @@ import {
   Button,
   Divider,
   Typography,
-  Link,
 } from '@mui/material'
 import Visibility from '@mui/icons-material/Visibility'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
@@ -21,7 +20,9 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined'
 import EastTwoToneIcon from '@mui/icons-material/EastTwoTone'
 import GoogleIcon from '@mui/icons-material/Google'
-
+import { Link } from 'react-router'
+import type { SubmitEvent } from 'react'
+import { registerSchema } from '@/schemas/Register/register.schema'
 
 // #12355B → botões principais, áreas de destaque, cabeçalhos
 // #14B8A6 → ações secundárias, detalhes, indicadores positivos
@@ -34,7 +35,7 @@ type MainFormsProps = {
   mode: 'login' | 'register'
 }
 
-const MainForms = ({ isDark, mode}: MainFormsProps) => {
+const MainForms = ({ isDark, mode }: MainFormsProps) => {
   const [showPassword, setShowPassword] = useState<boolean>(false)
   const textColor = isDark ? '#F7FAFC' : '#0B1F33'
   const secondaryColor = isDark ? '#B3C2D1' : '#5B6B7A'
@@ -68,6 +69,23 @@ const MainForms = ({ isDark, mode}: MainFormsProps) => {
         color: textColor,
       },
     },
+  }
+
+  const handleSubmit = (event: SubmitEvent<HTMLFormElement>): void => {
+    event.preventDefault()
+    const formData = new FormData(event.currentTarget)
+    const password = formData.get('password')
+    const confirmPassword = formData.get('Confirmpassword')
+
+    if (mode === 'register') {
+     const result = registerSchema.safeParse({ password, confirmPassword })
+
+
+     if(!result.success){
+       throw new Error('As senhas não seguem o padrão')
+     }
+    }
+
   }
 
   return (
@@ -117,14 +135,18 @@ const MainForms = ({ isDark, mode}: MainFormsProps) => {
 
         <Box sx={{ marginTop: '25px' }}>
           <Title
-            title={mode === 'login'?'Bem-vindo de volta': 'Crie sua conta' }
+            title={mode === 'login' ? 'Bem-vindo de volta' : 'Crie sua conta'}
             fontFamily="arial"
             fontSize="24px"
             fontWeight="600"
             color={textColor}
           />
           <Title
-            title={mode === 'login' ?"Acesse sua conta e continue cuidando das susa finanças": 'Crie a sua conta e tenha mais controle dos seus gastos'}
+            title={
+              mode === 'login'
+                ? 'Acesse sua conta e continue cuidando das susa finanças'
+                : 'Crie a sua conta e tenha mais controle dos seus gastos'
+            }
             fontFamily="arial"
             fontSize="14px"
             fontWeight="400"
@@ -132,7 +154,12 @@ const MainForms = ({ isDark, mode}: MainFormsProps) => {
           />
         </Box>
 
-        <Stack spacing={3} sx={{ marginTop: '30px', width: '100%'}}>
+        <Stack
+          component="form"
+          onSubmit={handleSubmit}
+          spacing={3}
+          sx={{ marginTop: '30px', width: '100%' }}
+        >
           <Stack spacing={1} sx={{ textAlign: 'left' }}>
             <Title
               title="E-mail"
@@ -175,6 +202,7 @@ const MainForms = ({ isDark, mode}: MainFormsProps) => {
 
             <TextField
               id="senha"
+              name="password"
               placeholder="Sua senha"
               type={showPassword ? 'text' : 'password'}
               variant="outlined"
@@ -214,12 +242,32 @@ const MainForms = ({ isDark, mode}: MainFormsProps) => {
                 },
               }}
             />
-            <Box >
+
+            {mode === 'register' && (
+              <Stack spacing={1}>
+                <Title
+                  title="Confirmar senha"
+                  fontSize="14px"
+                  fontWeight="700"
+                />
+
+                <TextField
+                  id="confirmPassword"
+                  name="confirmPassword"
+                  type="password"
+                  placeholder="Confirme sua senha"
+                  variant="outlined"
+                  fullWidth
+                  sx={fieldStyles}
+                />
+              </Stack>
+            )}
+            <Box>
               <FormControlLabel
                 control={
                   <Checkbox
                     sx={{
-                      color: secondaryColor, 
+                      color: secondaryColor,
                       '&.Mui-checked': { color: accentColor },
                     }}
                   />
@@ -297,6 +345,7 @@ const MainForms = ({ isDark, mode}: MainFormsProps) => {
               Entrar com o Google
             </Button>
           </Stack>
+
           <Box
             sx={{
               display: 'flex',
@@ -310,8 +359,9 @@ const MainForms = ({ isDark, mode}: MainFormsProps) => {
                 color: secondaryColor,
               }}
             >
-              Ainda não tem uma conta ?
+              {mode === 'login' ? 'Já tem uma conta ?' : 'Acesse agora'}
             </Typography>
+
             <Typography
               sx={{
                 fontWeight: 700,
@@ -322,10 +372,11 @@ const MainForms = ({ isDark, mode}: MainFormsProps) => {
                   outlineOffset: '3px',
                 },
               }}
+
               component={Link}
-              href="/register"
+              to={mode === 'login' ? '/register' : '/login'}
             >
-              Criar Conta
+              {mode === 'login' ? 'Criar Conta' : 'Acesse agora'}
             </Typography>
           </Box>
         </Stack>

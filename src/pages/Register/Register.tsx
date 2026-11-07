@@ -26,13 +26,19 @@ const Register = () => {
             display: 'flex',
             alignItems: 'center',
             backgroundColor: '#03141f',
+            height: { xs: 'auto', md: '100dvh' },
+            overflow: { xs: 'visible', md: 'hidden' },
           }}
         >
           <Box
             component="img"
-            src="/Login/financas.png"
+            src="/Register/capa_register.png"
             alt="Verba: suas finanças em um só lugar"
-            sx={{ display: 'block', width: '100%', height: 'auto' }}
+            sx={{
+              display: 'block',
+              width: '100%',
+              height: { xs: 'auto', md: '100%' },
+            }}
           />
         </Box>
 
@@ -66,7 +72,7 @@ const Register = () => {
             <ButtonTheme isDark={isDark} onClick={changeColor} />
           </Box>
 
-          <MainForms isDark={isDark} mode='register' />
+          <MainForms isDark={isDark} mode="register" />
         </Box>
       </Box>
     </>
