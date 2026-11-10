@@ -23,6 +23,7 @@ import GoogleIcon from '@mui/icons-material/Google'
 import { Link } from 'react-router'
 import type { SubmitEvent } from 'react'
 import { registerSchema } from '@/schemas/Register/register.schema'
+import { toast } from 'sonner'
 
 // #12355B → botões principais, áreas de destaque, cabeçalhos
 // #14B8A6 → ações secundárias, detalhes, indicadores positivos
@@ -37,6 +38,11 @@ type MainFormsProps = {
 
 const MainForms = ({ isDark, mode }: MainFormsProps) => {
   const [showPassword, setShowPassword] = useState<boolean>(false)
+  const [confirmPasswordError, setConfirmPasswordError] = useState<string>('')
+  const [confirmPassword, setConfirmPassword] = useState<string>('')
+  const [email, setEmail] = useState<string>('')
+  const [name, setName] = useState<string>('')
+  const [password, setPassword] = useState<string>('')
   const textColor = isDark ? '#F7FAFC' : '#0B1F33'
   const secondaryColor = isDark ? '#B3C2D1' : '#5B6B7A'
   const borderColor = isDark ? '#52677D' : '#8593A1'
@@ -71,21 +77,62 @@ const MainForms = ({ isDark, mode }: MainFormsProps) => {
     },
   }
 
-  const handleSubmit = (event: SubmitEvent<HTMLFormElement>): void => {
+  const handleSubmit = async (
+    event: SubmitEvent<HTMLFormElement>,
+  ): Promise<void> => {
     event.preventDefault()
+
+    // Limpa mensagens anteriores
+    setConfirmPasswordError('')
+
     const formData = new FormData(event.currentTarget)
+
     const password = formData.get('password')
-    const confirmPassword = formData.get('Confirmpassword')
+    const confirmPassword = formData.get('confirmPassword')
 
     if (mode === 'register') {
-     const result = registerSchema.safeParse({ password, confirmPassword })
+      const result = registerSchema.safeParse({
+        password,
+        confirmPassword,
+        email
+      })
 
+      if (!result.success) {
+        const confirmPasswordIssue = result.error.issues.find(
+          (issue) => issue.path[0] === 'confirmPassword',
+        )
 
-     if(!result.success){
-       throw new Error('As senhas não seguem o padrão')
-     }
+        setConfirmPasswordError(
+          confirmPasswordIssue?.message ?? 'Verifique os dados informados.',
+        )
+
+        toast.error('Verifique os dados informados ')
+        return
+      }
+      toast.success('Validação concluída com sucesso')
     }
+    try {
+      const result = await fetch('http://localhost:3000/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
 
+        body: JSON.stringify({
+          name,
+          email,
+          password,
+        }),
+      })
+      const data = await result.json()
+
+      if (!result.ok) {
+        throw new Error(data.message || 'Érro ao cadastra usuário')
+      }
+      console.log('Usuário cadastrado com sucesso!', data)
+    } catch (error) {
+      console.error('Não foi possível cadastrar o usuário', error)
+    }
   }
 
   return (
@@ -161,6 +208,34 @@ const MainForms = ({ isDark, mode }: MainFormsProps) => {
           sx={{ marginTop: '30px', width: '100%' }}
         >
           <Stack spacing={1} sx={{ textAlign: 'left' }}>
+
+  {mode === 'register' && (
+              <Stack spacing={1}>
+                <Title
+                  title="nome"
+                  fontSize="14px"
+                  fontWeight="700"
+                  color={textColor}
+                />
+
+                <TextField
+                  id="name"
+                  name="name"
+                  type="text"
+                  placeholder="Digite o seu nome"
+                  variant="outlined"
+                  fullWidth
+                  sx={fieldStyles}
+                
+                  onChange={(event) => {
+                    setName(event.target.value)
+                   
+                  }}
+                  value={name}
+                />
+              </Stack>
+            )}
+            
             <Title
               title="E-mail"
               fontFamily="arial"
@@ -175,6 +250,8 @@ const MainForms = ({ isDark, mode }: MainFormsProps) => {
               variant="outlined"
               size="medium"
               sx={fieldStyles}
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
               slotProps={{
                 htmlInput: { 'aria-label': 'E-mail' },
                 input: {
@@ -207,6 +284,8 @@ const MainForms = ({ isDark, mode }: MainFormsProps) => {
               type={showPassword ? 'text' : 'password'}
               variant="outlined"
               size="medium"
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
 
               sx={fieldStyles}
               slotProps={{
@@ -249,6 +328,7 @@ const MainForms = ({ isDark, mode }: MainFormsProps) => {
                   title="Confirmar senha"
                   fontSize="14px"
                   fontWeight="700"
+                  color={textColor}
                 />
 
                 <TextField
@@ -259,6 +339,13 @@ const MainForms = ({ isDark, mode }: MainFormsProps) => {
                   variant="outlined"
                   fullWidth
                   sx={fieldStyles}
+                  error={Boolean(confirmPasswordError)}
+                  helperText={confirmPasswordError}
+                  onChange={(event) => {
+                    setConfirmPassword(event.target.value)
+                    setConfirmPasswordError('')
+                  }}
+                  value={confirmPassword}
                 />
               </Stack>
             )}
@@ -286,6 +373,7 @@ const MainForms = ({ isDark, mode }: MainFormsProps) => {
 
             <Button
               variant="outlined"
+              type="submit"
               endIcon={<EastTwoToneIcon />}
               sx={{
                 textTransform: 'none',
